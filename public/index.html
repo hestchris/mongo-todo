@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+		<form v-on:submit='postNewTask'>
+			<input v-model='newitem.userinput' placeholder="Add Task">
+			<input type="submit" value="Submit">
+		</form>
+
+	</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="/main.js"></script>
+</body>
+</html>
