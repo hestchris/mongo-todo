@@ -1,1 +1,8 @@
-	
+body {
+	text-align: center;
+}
+.input {
+	height:2rem;
+	width: 18rem;
+	font-size: 3rem;
+}

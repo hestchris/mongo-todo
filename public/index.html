@@ -2,15 +2,21 @@
 <html>
 <head>
 	<script src="https://unpkg.com/vue"></script>
+	<link rel="stylesheet" type="text/css" href="/main.css">
 </head>
 <body>
     <div id="app">
 		<form v-on:submit='postNewTask'>
-			<input v-model='newitem.userinput' placeholder="Add Task">
+			<input class='input' v-model='newitem.userinput' placeholder="Add Task">
 			<input type="submit" value="Submit">
 		</form>
-
+		<ul>
+			<li v-for="task in listoftasks" v-bind:key='userinput'>
+				{{task.name}}
+			</li>
+		</ul>
 	</div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <script src="/main.js"></script>

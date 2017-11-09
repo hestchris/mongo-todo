@@ -1,51 +1,50 @@
-var express = require('express')
-var bodyParser = require('body-parser')
-var mongo = require('mongodb')
+const express = require('express')
+const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
 
-var app = express()
+const app = express()
 
-var MongoClient = mongo.MongoClient
+//connect to mongoose
+mongoose.connect('mongodb://localhost/mongo-todo')
 
-MongoClient.connect('mongodb://localhost:27017/mongo-todo', function(err, db){
-	if (err) {
-        console.log('failed to connect to mongo')
-        console.log(err)
+//create schema
+let NewTask = new mongoose.Schema({
+		input: {type: String, required: true}
+	})
+//create model
+let InputModel = mongoose.model('todomodel', NewTask)
+
+//
+app.use(express.static('./public'))
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json())
+
+//get all the current to do items in the db
+app.get('/list', function(req, res){
+	InputModel.find(
+		{},
+		function(err, userinput) {
+			if(err) {
+				res.status(500).send(err)
+				return console.log(err)
+			}
+			res.status(200).send(userinput)
 		}
-		else {
-	        console.log("connected to mongo!")
-	    }
+	)
+})
+app.post('/newtask', function(req, res){
 
-	app.use(express.static('./public'))
-    app.use(bodyParser.urlencoded({extended: true}))
-    app.use(bodyParser.json())
-
-	app.post('/newtask', function(req, res){
-		console.log(req.body)
-		db.collection('todo').insert(req.body, function(err){
-			if (err) {
-				console.log(err)
-				res.send('there was an error')
-			}
-			else {
-				res.send('your data was sent successfully')
-			}
-		})
-		// req.body.animalAge = parseInt(req.body.animalAge)
-		// db.collection('animals').insert(req.body, function(err){
-		// 	if (err){
-		// 		console.log(err)
-		// 		res.send('oops, something went wrong.')
-		// 	}
-		// 	else {
-		// 		res.send('got your data!')
-
-			// }
-		})
+	console.log(req.body);
+	let newTask = {
+		input: req.body.userinput
+	}
+})
 
 
 
 
-	app.listen(8080, function(){
-        console.log('server listening on port 8080')
-    })
+
+
+app.listen(8080, function(){
+    console.log('server listening on port 8080')
 })
