@@ -5,14 +5,14 @@ const mongoose = require('mongoose')
 const app = express()
 
 //connect to mongoose
-mongoose.connect('mongodb://localhost/mongo-todo')
+mongoose.connect('mongodb://localhost:27017/mongo-todo')
 
 //create schema
-let NewTask = new mongoose.Schema({
-		input: {type: String, required: true}
+let newItem = new mongoose.Schema({
+		userinput: {type: String, required: true}
 	})
 //create model
-let InputModel = mongoose.model('todomodel', NewTask)
+let InputModel = mongoose.model('todomodel', newItem)
 
 //
 app.use(express.static('./public'))
@@ -32,15 +32,22 @@ app.get('/list', function(req, res){
 		}
 	)
 })
+
+
 app.post('/newtask', function(req, res){
 
 	console.log(req.body);
-	let newTask = {
-		input: req.body.userinput
+	let newItem = {
+		userinput: req.body.newItem.userinput
 	}
+	new InputModel(newItem).save(function(err, addedTask){
+		if (err) {
+			res.status(500).send(err);
+			return console.log(err);
+		}
+		res.status(200).send(addedTask);
+	})
 })
-
-
 
 
 

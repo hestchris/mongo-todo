@@ -2,19 +2,22 @@
 <html>
 <head>
 	<script src="https://unpkg.com/vue"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="/main.css">
+
 </head>
 <body>
     <div id="app">
-		<form v-on:submit='postNewTask'>
-			<input class='input' v-model='newitem.userinput' placeholder="Add Task">
-			<input type="submit" value="Submit">
-		</form>
-		<ul>
-			<li v-for="task in listoftasks" v-bind:key='userinput'>
-				{{task.name}}
-			</li>
-		</ul>
+				<form v-on:submit='postNewTask'>
+					<input class='input' v-model='newItem.userinput' placeholder="Add Task">
+					<input type="submit" value="Submit">
+				</form>
+				<ul>
+					<li v-for="task in listoftasks" v-bind:key='userinput'>
+						{{task.userinput}}
+					</li>
+				</ul>
+
 	</div>
 
 

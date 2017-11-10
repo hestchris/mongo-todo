@@ -9,7 +9,7 @@ var mainVm = new Vue({
 	},
     data: {
 		listoftasks: [],
-    	newitem: {
+    	newItem: {
 			userinput: '',
 		}
     },
@@ -17,10 +17,10 @@ var mainVm = new Vue({
 	postNewTask: function(event){
 		event.preventDefault()
 		// $().serialize() will grab all the named inputs in the form, and put their values into a url-encoded string
-		$.post('/newtask', {newitem: this.newitem}, (data) => {
+		$.post('/newtask', {newItem: this.newItem}, (data) => {
 			// console.log(this.newitem)
 			this.listoftasks.push(data);
-			console.log('successful post')
+
 		})
 	}
 
