@@ -68,7 +68,19 @@ app.post('/newtask', function(req, res){
 	})
 })
 
-
+app.post('/delete', function(req, res) {
+	console.log(req.body)
+	InputModel.findOneAndRemove(
+		{_id: req.body.id},
+		function(err, removedTask){
+		if(err) {
+	        res.status(500).send(err);
+	        return console.log(err);
+		}
+		console.log('successfully removed task', removedTask)
+		res.send(removedTask)
+	})
+})
 
 
 app.listen(8080, function(){

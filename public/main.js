@@ -40,6 +40,17 @@ var mainVm = new Vue({
 			})
 		},
 
+		removeTask: function(task){
+	      	var index = this.listoftasks.indexOf(task);
+			var id = mainVm.listoftasks[index]._id
+			// console.log(index)
+	      	this.listoftasks.splice(index, 1);
+	      	$.post('/delete', {id:id}, function(removedTask){
+	      		console.log(removedTask)
+
+	      	})
+
+		},
 	},
 
 })
