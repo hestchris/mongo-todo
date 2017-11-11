@@ -8,17 +8,27 @@
 </head>
 <body>
     <div id="app">
-				<form v-on:submit='postNewTask'>
-					<input class='input' v-model='newItem.userinput' placeholder="Add Task">
-					<input type="submit" value="Submit">
-				</form>
-				<ul>
-					<li v-for="task in listoftasks" v-bind:key='userinput'>
-						{{task.userinput}}
-					</li>
-				</ul>
-
+		<form v-on:submit='postNewTask'>
+			<input class='input' v-model='newItem.userinput' placeholder="Add Task">
+			<input type="submit" value="Submit">
+		</form>
+		<ul>
+			<li v-for="task in listoftasks"  v-bind:class="{ completed: task.completed }" v-on:click="toggleCompleted(task)" > <!--had a v-bind:key on this line and v-on:click='toggleCompleted(task)' -->
+				{{task.userinput}}
+			</li>
+			<!-- <li v-for="task in listoftasks">
+				<input class="checkbox" v-model="task.complete">
+				<span v-bind:class="{completed: newItem.taskcomplete}"> {{task.userinput}} </span>
+			</li> -->
+		</ul>
 	</div>
+
+
+
+
+
+
+
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>

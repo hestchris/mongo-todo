@@ -6,3 +6,6 @@ body {
 	width: 18rem;
 	font-size: 3rem;
 }
+.completed {
+	text-decoration: line-through;
+}
