@@ -34,8 +34,12 @@ app.get('/list', function(req, res){
 	)
 })
 app.post('/update', function(req, res) {
-	InputModel.update(
-		{ completed: req.body.completed},
+	InputModel.update( //.findByIdAndUpdate(req.body.task._id,)
+		{ _id : req.body.task._id },
+		{ $set: {
+			completed: req.body.task.completed
+		} },
+		{ new: true },
 		function(err, update) {
 			console.log(update)
 			if (err) {

@@ -22,23 +22,14 @@ var mainVm = new Vue({
 			// $.post('/update', task, function(updatedlist){
 			// 	this.listoftasks.push(updatedlist)
 			// 	console.log(updatedlist)
-				$.post('/update', {completed: this.completed}, (updatedlist) => {
+				$.post('/update', {task: task}, (updatedlist) => {
 					this.newItem.completed = updatedlist
-				$.get('/list', (currentlist) => {
-					// console.log(currentlist)
-					this.listoftasks = currentlist
+					$.get('/list', (currentlist) => {
+						// console.log(currentlist)
+						this.listoftasks = currentlist
 				})
 			})
 		},
-
-		birthday: function(evt) {
-	            evt.preventDefault();
-	            $.post('/birthday', {birthdayAnimal: this.birthdayAnimal}, (dataFromServer) => {
-	                this.animals = dataFromServer;
-	            });
-	        },
-
-
 
 		postNewTask: function(event) {
 			event.preventDefault()

@@ -8,22 +8,36 @@
 </head>
 <body>
     <div id="app">
-		<form v-on:submit='postNewTask'>
-			<input class='input' v-model='newItem.userinput' placeholder="Add Task">
-			<input type="submit" value="Submit">
-		</form>
-		<ul>
-			<li v-for="task in listoftasks"  v-bind:class="{ completed: task.completed }" v-on:click="toggleCompleted(task)" > <!--had a v-bind:key on this line and v-on:click='toggleCompleted(task)' -->
-				{{task.userinput}}
-			</li>
-			<!-- <li v-for="task in listoftasks">
-				<input class="checkbox" v-model="task.complete">
-				<span v-bind:class="{completed: newItem.taskcomplete}"> {{task.userinput}} </span>
-			</li> -->
-		</ul>
+		<div class="row">
+			<div class='col-lg-12'>
+				<h1>To Do List</h1>
+				<hr />
+				<form v-on:submit='postNewTask'>
+					<div class ="input-group">
+						<span class="input-group-addon">
+			  	       		<!-- <input type="checkbox" class='checkbox' aria-label="Checkbox for following text input"> -->
+			  	     	</span>
+						<input
+						type='text'
+						class='form-control'
+						v-model='newItem.userinput'
+						placeholder="Add Task">
+					 	<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</form>
+				<hr />
+				<ul>
+					<li
+					v-for="task in listoftasks"
+					v-bind:class="{ completed: task.completed }"
+					v-on:click="toggleCompleted(task)"
+					>
+								{{task.userinput}}
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
-
-
 
 
 
